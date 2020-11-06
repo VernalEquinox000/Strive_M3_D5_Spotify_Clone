@@ -14,7 +14,7 @@ const removeTrack = function (e) {
     row.remove();
   }, 2500);
 };
-fetch("https://deezerdevs-deezer.p.rapidapi.com/album/6983483", {
+fetch("https://deezerdevs-deezer.p.rapidapi.com/album/119606", {
     "method": "GET",
     "headers": {
       "x-rapidapi-key": "2ecd7c2fb5msh0fa167f544e5b1fp16bf79jsnc31bc5a31efa",
@@ -60,14 +60,11 @@ fetch("https://deezerdevs-deezer.p.rapidapi.com/album/6983483", {
       albumDesc.innerText = `Genres: ${genre}`
       let albumImg = document.querySelector("#albumImg");
       albumImg.setAttribute("src", album.cover_medium);
-      document.getElementById("albuminfo").innerHTML = `<strong><a>${album.label}</a></strong>, ${album.fans} fans, ${album.nb_tracks} songs, ${Math.floor(album.duration/60)} minutes.`
+      let albuminfo = document.getElementById("albuminfo").innerHTML = `<strong><a>${album.label}</a></strong>, ${album.fans} fans, ${album.nb_tracks} songs, ${Math.floor(album.duration/60)} minutes.`
       document.getElementsByClassName("background")[0].style.background = `url(${album.cover_medium})`
       document.getElementsByClassName("background")[0].style.backgroundRepeat = `no-repeat`
       document.getElementsByClassName("background")[0].style.backgroundSize = `100%`
       document.getElementsByClassName("background")[0].style.backgroundPosition = `center`
-
-
-
     });
 
   })

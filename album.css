@@ -257,11 +257,16 @@ main .container .row img:first-of-type {
 .album div:first-of-type {
   margin-top: 50px;
   font-weight: 500;
+  color: rgba(65, 215, 0, 1);
+  -webkit-text-stroke: .5px black;
+
 }
 
 .album div:nth-of-type(2) {
   font-size: 50px;
   font-weight: 600;
+  color: rgba(65, 215, 0, 1);
+  -webkit-text-stroke: .9px black;
 }
 
 i.far.fa-play-circle,
