@@ -59,8 +59,8 @@ const populateAlbums = function () {
         divElement.classList.add("mb-4");
         document.querySelectorAll(".row.row-cols-1")[0].appendChild(divElement);
 
-        divElement.innerHTML = 
-                `<div class="col mb-4">
+        divElement.innerHTML =
+          `<div class="col mb-4">
                 <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px; id='${element.album.id}' onclick=(openSong(${element.album.id})">
                 <div>
                     <img src="${element.album.cover}">
@@ -71,12 +71,9 @@ const populateAlbums = function () {
                     <strong>${element.album.title}</strong>
                 </div>
                 </div>
-            </div>`      
+            </div>`
+      })
     })
-  
-  
-  
-  
 }
   
   
