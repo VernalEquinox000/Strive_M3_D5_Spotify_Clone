@@ -467,11 +467,6 @@ th > i:hover {
 
 #jumbotron {
   color: white;
-  background: url("images/photo/TPH.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: center;
 }
 
 #jumbotron > .container {
