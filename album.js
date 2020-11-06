@@ -36,7 +36,9 @@ fetch("https://deezerdevs-deezer.p.rapidapi.com/album/119606", {
     let tracklist = album.tracks
     let tracks = tracklist.data
     console.table(tracks)
-    let firstalbum = tracks[0].title
+    let today = new Date()
+    let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+    console.log(date)
     tracks.forEach((element, index) => {
       let tbody = document.querySelector("tbody");
       let tr = document.createElement("tr");
@@ -50,7 +52,7 @@ fetch("https://deezerdevs-deezer.p.rapidapi.com/album/119606", {
                             </div>
                         </td>
                         <td>${title}</td>
-                        <td>3 days ago</td>
+                        <td>${album.release_date}</td>
                         <td>${(tracks[index].duration / 60).toFixed(2)}</td>
                         <td><a type="button" onclick="removeTrack(this)">Remove</a></td>`;
       tbody.appendChild(tr);
@@ -63,7 +65,7 @@ fetch("https://deezerdevs-deezer.p.rapidapi.com/album/119606", {
       let albuminfo = document.getElementById("albuminfo").innerHTML = `<strong><a>${album.label}</a></strong>, ${album.fans} fans, ${album.nb_tracks} songs, ${Math.floor(album.duration/60)} minutes.`
       document.getElementsByClassName("background")[0].style.background = `url(${album.cover_medium})`
       document.getElementsByClassName("background")[0].style.backgroundRepeat = `no-repeat`
-      document.getElementsByClassName("background")[0].style.backgroundSize = `100%`
+      document.getElementsByClassName("background")[0].style.backgroundSize = `cover`
       document.getElementsByClassName("background")[0].style.backgroundPosition = `center`
     });
 
@@ -166,7 +168,6 @@ lastTr.innerHTML = `<th scope="row"></th>
                   </div>
                   `;
 
-tbody.appendChild(lastTr);
 
 const addNewTrack = function () {
   let lastRow = tbody.querySelector("tr:nth-last-of-type(2)");
