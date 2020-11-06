@@ -65,7 +65,7 @@ function popularAlbums(songInfo) {
 
           </div>
           <div class="card-text">
-            <span class="d-inline-block text-truncate" style="max-width: 100%;">
+            <span class="d-inline-block text-truncate text-white" style="max-width: 100%;">
               <strong>${
                 songInfo.album.title.length < 16
                   ? `${songInfo.album.title}`
