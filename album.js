@@ -1,3 +1,7 @@
+/*This page's skeleton and static functionalities  are a previous group assignemnt from Pierdomenico and his group. 
+I took care of the API fetching for D5 of M3. I changed the head colors to better fit the cover pages in the background and I 
+dynamically implemented all the album details. */
+
 const removeTrack = function (e) {
   let row = e.parentElement.parentElement;
   row.classList.add("animate");
