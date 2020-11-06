@@ -129,15 +129,26 @@ const getAlbums = () => {
                         </div>
                         </div>
       `;
+      let map = new Map();
+      for (element of albumObj.data) {
+        map.set(element.album.id, element);
+      }
 
-      albumObj.data.forEach((element) => {
+      let filteredData = [];
+      map.forEach((value, key, map) => {
+        filteredData.push(value);
+      });
+      console.log(filteredData);
+
+      filteredData.forEach((element) => {
         let divElement = document.createElement("div");
         divElement.classList.add("col");
         divElement.classList.add("mb-4");
         document.querySelectorAll(".row.row-cols-1")[0].appendChild(divElement);
+
         divElement.innerHTML = `
                 <div class="col mb-4">
-                <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px;">
+                <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px; id='${element.album.id}' onclick=(openSong(${element.album.id})">
                 <div>
                     <img src="${element.album.cover}">
                     <div class="play-btn rounded-pill"></div>
@@ -154,6 +165,11 @@ const getAlbums = () => {
     .catch((err) => {
       console.error(err);
     });
+};
+
+const openSong = (id) => {
+  window.open("album.html?id=" + id);
+  console.log(id);
 };
 
 getArtist();
