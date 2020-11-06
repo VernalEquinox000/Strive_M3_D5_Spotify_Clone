@@ -1,0 +1,554 @@
+body {
+  font-family: "Circular Spotify Tx T Bold";
+  font-size: 14px;
+}
+
+.vertical-nav {
+  min-width: 232px;
+  width: 232px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.page-content {
+  width: calc(100% - 14.5rem);
+  margin-left: 14.5rem;
+  transition: all 0.4s;
+}
+
+.nav-color {
+  background: #040404;
+}
+
+.nav-color a {
+  color: #b3b3b3 !important;
+}
+
+.nav-color a {
+  color: #b3b3b3 !important;
+}
+
+.drop-divider {
+  height: 0;
+  border-top: 0.2px solid #b3b3b3;
+}
+
+.navbar-brand img {
+  height: 3.09rem;
+}
+
+#active {
+  background: #282828;
+  color: #fff !important;
+}
+
+.icon {
+  margin-right: 13px;
+}
+
+/*playlist*/
+
+nav h1 {
+  color: #b3b3b3 !important;
+}
+.nav-header {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0.1em;
+}
+
+.nav-link:hover {
+  color: #fff !important;
+}
+
+.sp-btn {
+  color: #fff;
+  opacity: 0.7;
+  background-color: transparent;
+  border: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-height: -webkit-max-content;
+  min-height: -moz-max-content;
+  min-height: max-content;
+  cursor: pointer;
+  -webkit-transition: opacity 0.2s linear;
+  transition: opacity 0.2s linear;
+  width: 100%;
+  padding: 0;
+}
+
+.sp-btn:hover {
+  opacity: 1;
+}
+
+.btn-svg {
+  background: #fff;
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  fill: #000;
+}
+
+.heart {
+  background: linear-gradient(135deg, #450af5, #c4efd9);
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+}
+.spoticon-heart-active-16::before {
+  font-size: 16px;
+}
+[class*=" spoticon-"]:before,
+[class^="spoticon-"]:before {
+  font-family: glue1-spoticon;
+  font-style: normal;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: inherit;
+  vertical-align: bottom;
+  display: inline-block;
+  text-decoration: inherit;
+}
+
+.Rootlist__divider {
+  background-color: #282828;
+  border: none;
+  height: 1px;
+}
+
+.overflow {
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  padding: 4px 0;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  margin-left: 272px;
+  background-color: #040404;
+}
+
+header {
+  display: flex;
+  justify-content: flex-end;
+  background-color: rgba(0, 0, 0, 1);
+  margin-bottom: 0px;
+}
+
+header i {
+  font-size: 30px;
+  color: white;
+  margin: 10px;
+  z-index: 99999;
+}
+
+#user-image {
+  background-image: url("https://cdn.discordapp.com/avatars/265101186212954113/2db0d4407aa1aad036a03226c7ab8753.png?size=256");
+  width: 28px;
+  height: 28px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.upgrade + .dropdown .dropdown-toggle:after {
+  position: relative;
+  bottom: 8px;
+}
+
+.upgrade.btn:focus,
+.user-btn.btn:focus {
+  box-shadow: none;
+}
+
+.user-btn.btn:hover {
+  background-color: #282828 !important;
+}
+
+.user-name {
+  position: relative;
+  bottom: 10px;
+}
+
+.arrow {
+  font-size: 1em;
+}
+
+.arrow:hover {
+  cursor: pointer;
+}
+
+.upgrade:hover {
+  transform: scale(1.05);
+}
+
+.head {
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+.albumHead {
+  background: hsla(339, 100%, 55%, 1);
+
+  background: linear-gradient(
+    90deg,
+    hsla(339, 100%, 55%, 1) 0%,
+    hsla(197, 100%, 64%, 1) 100%
+  );
+
+  background: -moz-linear-gradient(
+    90deg,
+    hsla(339, 100%, 55%, 1) 0%,
+    hsla(197, 100%, 64%, 1) 100%
+  );
+
+  background: -webkit-linear-gradient(
+    90deg,
+    hsla(339, 100%, 55%, 1) 0%,
+    hsla(197, 100%, 64%, 1) 100%
+  );
+
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#ff1b6b", endColorstr="#45caff", GradientType=1 );
+}
+
+main {
+  padding-bottom: 98px;
+}
+
+main .container {
+  margin-left: 55px;
+}
+
+main .container .row img:first-of-type {
+  width: 230px;
+  height: 230px;
+}
+
+.album {
+  margin: 10px;
+}
+
+.album div:first-of-type {
+  margin-top: 50px;
+  font-weight: 500;
+}
+
+.album div:nth-of-type(2) {
+  font-size: 50px;
+  font-weight: 600;
+}
+
+i.far.fa-play-circle,
+i.far.fa-heart,
+i.fas.fa-ellipsis-h {
+  margin: 10px;
+  font-size: 50px;
+}
+
+table .container {
+  margin-left: 0px;
+}
+
+table {
+  background-color: black;
+}
+
+table tr th:first-of-type {
+  padding-left: 5rem;
+}
+
+thead tr th {
+  position: sticky;
+  top: 54px;
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.animate {
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  -webkit-animation-name: fadeIn;
+  animation-name: fadeIn;
+}
+
+@-webkit-keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  -webkit-animation-name: fadeOut;
+  animation-name: fadeOut;
+}
+
+/************footer****************/
+footer {
+  background-color: #282828;
+  padding: 30px;
+}
+
+footer i {
+  color: #b3b3b3;
+  margin: 10px;
+}
+
+/***************video bar****************/
+footer .fa-random:hover {
+  color: #fff;
+}
+
+footer .fa-step-backward:hover {
+  color: #fff;
+}
+
+footer .fa-play:hover {
+  color: #fff;
+  transform: scale(1.2);
+}
+
+footer .fa-step-forward:hover {
+  color: #fff;
+}
+
+footer .fa-redo:hover {
+  color: #fff;
+}
+
+footer .fa-list:hover {
+  color: #fff;
+}
+
+footer .fa-desktop:hover {
+  color: #fff;
+}
+
+footer .fa-volume-up:hover {
+  color: #fff;
+}
+
+.bar-color {
+  background-color: grey;
+}
+
+.bar-color:hover {
+  background-color: #1db954;
+}
+
+.progress-bar__slider {
+  background-color: #fff;
+  border: 0;
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  z-index: 100;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+  opacity: 0;
+}
+.middle-align {
+  position: absolute;
+
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  transform: translateX(25px);
+}
+
+/********burger menu***********/
+
+.hamburger {
+  margin: 0 20px;
+  margin-top: 26px;
+  width: 24px;
+  height: 14px;
+  position: absolute;
+  cursor: pointer;
+  display: none;
+}
+
+.hamburger .bar {
+  padding: 0;
+  width: 24px;
+  height: 1px;
+  background-color: white;
+  display: block;
+  border-radius: 4px;
+  transition: all 0.4s ease-in-out;
+  position: absolute;
+}
+
+.bar1 {
+  top: 0;
+}
+
+.bar2,
+.bar3 {
+  top: 6.5px;
+}
+
+.bar3 {
+  right: 0;
+}
+
+.bar4 {
+  bottom: 0;
+}
+
+.hamburger2 .bar2,
+.hamburger3 .bar3,
+.hamburger4 .bar4 {
+  top: 6.5px;
+}
+
+.hamburger4 .bar5 {
+  bottom: 0px;
+}
+
+.hamburger4 .bar {
+  transition: all 0.4s ease-in-out, transform 0.4s ease-in-out 0.4s;
+}
+
+.hamburger4 .bar2 {
+  width: 0px;
+  transform: rotate(90deg);
+  left: 12.5px;
+}
+
+.hamburger4 .bar3 {
+  width: 1px;
+  left: 13.5px;
+}
+
+.checkbox4 {
+  display: none;
+}
+
+.checkbox4:checked + label > .hamburger4 > .bar1 {
+  top: 13.5px;
+  background-color: transparent !important;
+}
+
+.checkbox4:checked + label > .hamburger4 > .bar2 {
+  left: 0px;
+  width: 24px;
+  transform: rotate(45deg);
+}
+
+.checkbox4:checked + label > .hamburger4 > .bar3 {
+  left: 0;
+  width: 24px;
+  transform: rotate(-45deg);
+}
+
+.checkbox4:checked + label > .hamburger4 > .bar4 {
+  background-color: transparent !important;
+}
+
+.checkbox4:checked + label > .hamburger4 > .bar5 {
+  bottom: 13.5px;
+  background-color: transparent !important;
+}
+
+/* for toggle behavior */
+
+#sidebar.active {
+  margin-left: -14.5rem;
+}
+
+#content.active {
+  width: 100%;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+
+  #sidebar {
+    margin-left: -14.5rem;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #content {
+    width: 100%;
+    margin: 0;
+  }
+  #content.active {
+    margin-left: 14.5rem;
+    width: calc(100% - 14.5rem);
+  }
+
+  .arrows {
+    margin-left: 32px;
+  }
+
+  .hide {
+    display: none;
+  }
+}

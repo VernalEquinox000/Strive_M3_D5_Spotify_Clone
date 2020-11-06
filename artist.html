@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+  <!-- font-awesome CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+  <!-- Spotify font-->
+  <link href="//db.onlinewebfonts.com/c/112ec584bfc481ccde03444e67f8fc3f?family=Circular+Spotify+Tx+T+Bold"
+    rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="artist.css" />
+  <link rel="stylesheet" href="main.css" />
+
+  <title>Album Page</title>
+</head>
+
+<body>
+  <nav class="vertical-nav text-white nav-color" id="sidebar">
+    <div class="pt-3 px-3 mb-3">
+      <a class="navbar-brand" href="index.html">
+        <img src="images\logo\Spotify-logo.png" alt="spotify logo" />
+      </a>
+    </div>
+
+    <ul class="nav flex-column mb-0 nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <li class="nav-item px-2 d-flex flex-column justify-content-center">
+        <a class="nav-link rounded align-middle active" id="active" id="v-pills-home-tab" data-toggle="pill"
+          href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
+          <div class="icon d-inline-block">
+            <svg viewBox="0 0 512 512" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+              <path d="M448 463.746h-149.333v-149.333h-85.334v149.333h-149.333v-315.428l192-111.746 192 110.984v316.19z"
+                fill="currentColor"></path>
+            </svg>
+          </div>
+          <span>Home</span>
+        </a>
+      </li>
+      <li class="nav-item px-2">
+        <a href="#" class="nav-link text-white">
+          <div class="icon d-inline-block">
+            <svg viewBox="0 0 512 512" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M349.714 347.937l93.714 109.969-16.254 13.969-93.969-109.969q-48.508 36.825-109.207 36.825-36.826 0-70.476-14.349t-57.905-38.603-38.603-57.905-14.349-70.476 14.349-70.476 38.603-57.905 57.905-38.603 70.476-14.349 70.476 14.349 57.905 38.603 38.603 57.905 14.349 70.476q0 37.841-14.73 71.619t-40.889 58.921zM224 377.397q43.428 0 80.254-21.461t58.286-58.286 21.461-80.254-21.461-80.254-58.286-58.285-80.254-21.46-80.254 21.46-58.285 58.285-21.46 80.254 21.46 80.254 58.285 58.286 80.254 21.461z"
+                fill="currentColor" fill-rule="evenodd"></path>
+            </svg>
+          </div>
+          <span>Search</span>
+        </a>
+      </li>
+      <li class="nav-item px-2">
+        <a class="nav-link" id="v-pills-library-tab" data-toggle="pill" href="#v-pills-library" role="tab"
+          aria-controls="v-pills-library" aria-selected="false">
+          <div class="icon d-inline-block">
+            <svg viewBox="0 0 512 512" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M291.301 81.778l166.349 373.587-19.301 8.635-166.349-373.587zM64 463.746v-384h21.334v384h-21.334zM192 463.746v-384h21.334v384h-21.334z"
+                fill="currentColor"></path>
+            </svg>
+          </div>
+          <span>Your Library</span>
+        </a>
+      </li>
+      <!---Playlists::::::::::::::::::::::::::::::::::::-->
+      <h1 class="px-4 font-weight-bold text-uppercase px-3 nav-header pt-4 mb-3 mb-0">
+        Playlists
+      </h1>
+
+      <li class="nav-item px-4">
+        <button class="sp-btn" class="nav-link" id="v-pills-createPlaylist-tab" data-toggle="pill"
+          href="#v-pills-createPlaylist" role="tab" aria-controls="v-pills-createPlaylist" aria-selected="false">
+          <div class="icon d-inline-block bt">
+            <svg class="btn-svg" shape-rendering="crispEdges" viewBox="0 0 36 36">
+              <path d="m28 20h-8v8h-4v-8h-8v-4h8v-8h4v8h8v4z"></path>
+            </svg>
+          </div>
+          <span>Create Playlist</span>
+        </button>
+      </li>
+      <div class="nav-item px-4">
+        <a href="#" class="nav-link px-0">
+          <div class="icon d-inline-block">
+            <div class="heart spoticon-heart-active-16">
+              <i class="fas fa-heart"></i>
+            </div>
+          </div>
+          <span>Liked Songs</span>
+        </a>
+      </div>
+    </ul>
+
+    <!---divider:::::::::::::::::::::::::::::::::::::::::::-->
+    <div class="px-4">
+      <hr class="Rootlist__divider mt-1 mb-2" />
+    </div>
+  </nav>
+
+
+  <div class="page-content head overflow-hidden" id="content">
+    <header class="sticky-top d-flex justify-content-between">
+
+
+      <div class="burger-container">
+        <input type="checkbox" id="checkbox4" class="checkbox4 visuallyHidden" />
+        <label for="checkbox4">
+          <div class="hamburger hamburger4" id="sidebarCollapse">
+            <span class="bar bar1"></span>
+            <span class="bar bar2"></span>
+            <span class="bar bar3"></span>
+            <span class="bar bar4"></span>
+            <span class="bar bar5"></span>
+          </div>
+        </label>
+      </div>
+
+      <div>
+        <div class="container arrows d-flex">
+          <div class="d-flex mt-3">
+            
+          </div>
+
+          <div class="d-flex justify-content-end m-2">
+            <button class="btn text-white mr-2 rounded-pill py-0 border border-white upgrade">
+              Upgrade Now
+            </button>
+
+            <div class="dropdown">
+              <button class="user-btn rounded-pill pl-1 btn text-white dropdown-toggle pb-0" type="button"
+                id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="rounded-circle d-inline-block mr-2 mt-1" id="user-image"></div>
+                <div class="d-inline-block">
+                  <span class="user-name">Hung Jin</span>
+                </div>
+              </button>
+
+              <div class="dropdown-menu bg-dark nav-color" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="login.html">Login</a>
+                <a class="dropdown-item" href="#">Profile</a>
+                <div class="drop-divider"></div>
+
+                <a class="dropdown-item" href="#">Logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+
+    <main class="tab-content" id="v-pills-tabContent">
+      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+        <!--jumbotron:::::::::::::::::::::::::::::::-->
+        <div id="jumbotron" class="container-fluid black-bg">
+          <div class="container py-5">
+            <div class="text-container">
+              <h1 class="mt-5">Tom Petty <br>
+                & The Heartbreakers</h1>
+              <h6>233435354 listeners</h6>
+            </div>
+          </div>
+
+
+        </div>
+        <div id="first-container" class="container-fluid mt-5">
+          <div class="row">
+            <!--inner table-->
+            <div class="col-8 d-none d-md-block d-lg-block d-xl-block">
+              <h2>Most popular songs</h2>
+
+              <div>
+
+                <table class="table table-borderless table-hover table-dark" style="min-width: 500px;">
+                  <thead>
+                    <tr>
+                      <th scope="col">Play</th>
+                      <th scope="col">Title</th>
+                      <th scope="col">Album</th>
+                      <th scope="col">Date Added</th>
+                      <th scope="col"><i class="far fa-clock"></i></th>
+                      <th scope="col"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row"><i class="fas fa-play"></div></th>
+                      <td>Don't Do Me Like That</td>
+                      <td>Damn The Torpedoes</td>
+                      <td>Oct. 19 1979</td>
+                      <td>2:44</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><i class="fas fa-play"></div></th>
+                      <td>Change of Heart</td>
+                      <td>Long After Dark</td>
+                      <td>Nov. 2 1982</td>
+                      <td>3:18</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <th scope="row"><i class="fas fa-play"></div></th>
+                      <td>I Need to Know</td>
+                      <td>You're Gonna Get It!</td>
+                      <td>May 2 1978</td>
+                      <td>2:24</td>
+                      <td></td>
+                    </tr>
+                  </tbody>
+                </table>
+
+
+
+
+              </div>
+            </div>
+            <!--inner box-->
+            <div class="col-4 d-none d-lg-block">
+              <h2>Artist choice</h2>
+              <div class="card mb-3" style="max-width: 540px; max-width: height 200px;">
+                <div class="row no-gutters">
+                  <div class="col-4">
+                    <img src="images/album/TPH2.jpg" class="card-img" alt="...">
+                  </div>
+                  <div class="col-8">
+                    <div class="card-body">
+                      <div class="card-text">
+                        <span class="d-inline-block text-truncate" style="max-width: 100%;">Released by<br> Tom Petty & The Heartbreakers<br><strong>Tom Petty &
+                            The Heartbreakers</strong><br>
+                          1976 - Album</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!--Albums block::::::::::::::::::::::::::::-->
+
+        <div id="most-popular-albums" class="container-fluid mt-5">
+          <h2>Most Popular Albums</h2>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
+            <div class="col mb-4">
+              <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px;">
+
+                <div>
+                  <img src="images/album/TPH1.jpg" class="card-img-top" alt="..." />
+
+                  <div class="play-btn rounded-pill"></div>
+
+                </div>
+                <div class="card-text">
+                  <span class="d-inline-block text-truncate" style="max-width: 100%;">
+                    <strong>Tom Petty & The
+                      Heartbreakers</strong><br>
+                    1976 - Album</span>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col mb-4">
+              <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px;">
+                <div>
+                  <img src="images/album/TPH2.jpg" class="card-img-top" alt="..." />
+                  <div class="play-btn rounded-pill"></div>
+                </div>
+                <div class="card-text .text-truncate">
+                  <span class="d-inline-block text-truncate" style="max-width: 100%;">
+                    <strong>You're Gonna Get It!</strong><br>
+                    1978 - Album</span>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col mb-4">
+              <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px;">
+                <div>
+                  <img src="images/album/TPH3.jpg" class="card-img-top" alt="..." />
+                  <div class="play-btn rounded-pill"></div>
+                </div>
+                <div class="card-text">
+                  <span class="d-inline-block text-truncate" style="max-width: 100%;">
+                    <strong>Damn The Torpedoes</strong><br>
+                    1979 - Album</span>
+                </div>
+              </div>
+            </div>
+            <div class="col mb-4">
+              <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px;">
+                <div>
+                  <img src="images/album/TPH4.jpg" class="card-img-top" alt="..." />
+                  <div class="play-btn rounded-pill"></div>
+                </div>
+
+                <div class="card-text">
+                  <span class="d-inline-block text-truncate" style="max-width: 100%;">
+                    <strong>Hard Promises</strong><br>
+                    1981 - Album</span>
+                </div>
+              </div>
+            </div>
+            <div class="col mb-4">
+              <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px;">
+                <div>
+                  <img src="images/album/TPH5.jpg" class="card-img-top" alt="..." />
+                  <div class="play-btn rounded-pill"></div>
+                </div>
+                <div class="card-text">
+                  <span class="d-inline-block text-truncate" style="max-width: 100%;">
+                    <strong>Long After Dark</strong><br>
+                    1982 - Album</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!--Featured on:::::::::::::::::::::::::::::-->
+
+        <div id="featured-on" class="container-fluid mt-5">
+          <h2>Featured On</h2>
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
+            <div class="col mb-4">
+              <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px; ;">
+
+                <div>
+                  <img src="images/album/Tom_Petty_Wildflowers.jpg" class="card-img-top" alt="..." />
+
+                  <div class="play-btn rounded-pill"></div>
+
+                </div>
+                <div class="card-text">
+                  <span class="d-inline-block text-truncate" style="max-width: 100%;">
+                    Tom Petty<br>
+                    <strong>Wildflowers</strong><br>
+                    1994 - Album</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container" style="height:500px"></div>
+      </div>
+
+      <div class="tab-pane fade" id="v-pills-library" role="tabpanel" aria-labelledby="v-pills-library-tab">
+
+
+      </div>
+    </main>
+    <!-- </div> WHAT'S THIS CLOSING TAG FOR?-->
+
+    <footer class="fixed-bottom pb-0  pb-md-4 ">
+      <div class="container">
+        <div class="row">
+          <div class="col col-lg-10">
+            <div class="container d-flex justify-content-center">
+              <div>
+                <i class="fas fa-random"></i><i class="fas fa-step-backward"></i><i class="fas fa-play"></i><i
+                  class="fas fa-step-forward"></i><i class="fas fa-redo"></i>
+              </div>
+            </div>
+            <div class="container d-flex justify-content-center">
+              <div class="text-light">1:20</div>
+              <div class="progress m-2 bg-dark" style="height: 5px; width: 300px">
+                <div class="progress-bar" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0"
+                  aria-valuemax="100"></div>
+              </div>
+              <div class="text-light">3:35</div>
+            </div>
+          </div>
+  
+          <div class="col col-lg-2">
+            <div class="container d-flex justify-content-center">
+              <i class="fas fa-list"></i>
+              <i class="fas fa-desktop"></i>
+              <div class="d-flex container-volume">
+                <i class=" mr-md-2 fas fa-volume-up"></i>
+                <div class="mt-2">
+                  <div class="progress mt-1 bg-dark d-sm-block" style="height: 8px; width: 100px">
+                    <div class="progress-bar bar-color" role="progressbar" style="width: 25%" aria-valuenow="25"
+                      aria-valuemin="0" aria-valuemax="100">
+  
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"></script>
+    <script>
+      $(function () {
+        // Sidebar toggle behavior
+        $('#sidebarCollapse').on('click', function () {
+          $('#sidebar, #content').toggleClass('active');
+        });
+      });
+
+
+
+
+
+
+      window.onload = function () {
+        let arrow = document.querySelectorAll('i.arrow');
+        console.log(arrow)
+        let upgrade = document.querySelector('.upgrade');
+        let hamburger = document.querySelector('.hamburger');
+        let nav = document.querySelector('nav.active');
+
+        hamburger.addEventListener('click', function () {
+
+          //upgrade.classList.add('hide');
+          if (nav == nav) {
+            upgrade.classList.toggle('hide');
+
+            for (i = 0; i < arrow.length; i++) {
+              arrow[i].classList.toggle('hide');
+
+            }
+
+          }
+
+        })
+      }
+
+    </script>
+</body>
+
+</html>
