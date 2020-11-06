@@ -14,7 +14,7 @@ const removeTrack = function (e) {
     row.remove();
   }, 2500);
 };
-fetch("https://deezerdevs-deezer.p.rapidapi.com/album/119606", {
+fetch("https://deezerdevs-deezer.p.rapidapi.com/album/394978", {
     "method": "GET",
     "headers": {
       "x-rapidapi-key": "2ecd7c2fb5msh0fa167f544e5b1fp16bf79jsnc31bc5a31efa",
@@ -45,7 +45,7 @@ fetch("https://deezerdevs-deezer.p.rapidapi.com/album/119606", {
       tr.innerHTML = `<th scope="row">${index + 1}</th>
                         <td>
                             <div class="container">
-                            <div><strong>${tracks[index].title}</strong></div>
+                            <div id="tracktitle"><strong>${tracks[index].title}</strong></div>
                             <div><a href="artist.html">${
                               artist
                             }</a></div>
