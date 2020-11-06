@@ -1,3 +1,19 @@
+const removeTrack = function (e) {
+  let row = e.parentElement.parentElement;
+  row.classList.add("animate");
+  row.classList.add("fadeOut");
+  let selectedTrack = row.querySelector("strong");
+  let tracks = JSON.parse(localStorage.getItem("tracks"));
+  for (let i = 0; i < tracks.length; i++) {
+    if (tracks[i].title === selectedTrack.innerText) {
+      tracks.splice(i, 1);
+    }
+  }
+  localStorage.setItem("tracks", JSON.stringify(tracks));
+  setTimeout(function () {
+    row.remove();
+  }, 2500);
+};
 fetch("https://deezerdevs-deezer.p.rapidapi.com/album/6983483", {
     "method": "GET",
     "headers": {
@@ -7,21 +23,21 @@ fetch("https://deezerdevs-deezer.p.rapidapi.com/album/6983483", {
   })
   .then(response => response.json())
   .then(album => {
-    console.log(album)
+
     let title = album.title
     console.log(title);
+    let artistObj = album.artist
+    let artist = artistObj.name
+    console.log(artist)
     let genreObj = album.genres
-    console.log(genreObj)
     let genreData = genreObj.data
-    console.log(genreData)
     let genre = genreData[0].name
     console.log(genre)
     let tracklist = album.tracks
     let tracks = tracklist.data
     console.table(tracks)
     let firstalbum = tracks[0].title
-    tracks.forEach((x, index) => {
-      console.log(tracks[index].title)
+    tracks.forEach((element, index) => {
       let tbody = document.querySelector("tbody");
       let tr = document.createElement("tr");
       tr.innerHTML = `<th scope="row">${index + 1}</th>
@@ -29,13 +45,13 @@ fetch("https://deezerdevs-deezer.p.rapidapi.com/album/6983483", {
                             <div class="container">
                             <div><strong>${tracks[index].title}</strong></div>
                             <div><a href="artist.html">${
-                              clickedAlbum.artist
+                              artist
                             }</a></div>
                             </div>
                         </td>
-                        <td>${title[index]}</td>
+                        <td>${title}</td>
                         <td>3 days ago</td>
-                        <td>${Math.round(tracks[index].duration / 60)}</td>
+                        <td>${(tracks[index].duration / 60).toFixed(2)}</td>
                         <td><a type="button" onclick="removeTrack(this)">Remove</a></td>`;
       tbody.appendChild(tr);
       let albumTitle = document.querySelector("#albumTitle");
@@ -44,9 +60,15 @@ fetch("https://deezerdevs-deezer.p.rapidapi.com/album/6983483", {
       albumDesc.innerText = `Genres: ${genre}`
       let albumImg = document.querySelector("#albumImg");
       albumImg.setAttribute("src", album.cover_medium);
+      document.getElementById("albuminfo").innerHTML = `<strong><a>${album.label}</a></strong>, ${album.fans} fans, ${album.nb_tracks} songs, ${Math.floor(album.duration/60)} minutes.`
+      document.getElementsByClassName("background")[0].style.background = `url(${album.cover_medium})`
+      document.getElementsByClassName("background")[0].style.backgroundRepeat = `no-repeat`
+      document.getElementsByClassName("background")[0].style.backgroundSize = `100%`
+      document.getElementsByClassName("background")[0].style.backgroundPosition = `center`
+
+
 
     });
-    console.log(firstalbum)
 
   })
   .catch(err => {
@@ -73,7 +95,7 @@ if (clickedAlbum.album === undefined) {
   }
 }
 //console.log(clickedAlbum);
-let albumTitle = document.querySelector("#albumTitle");
+/*let albumTitle = document.querySelector("#albumTitle");
 albumTitle.innerText = clickedAlbum.album;
 let albumDesc = document.querySelector("#albumDesc");
 albumDesc.innerText = clickedAlbum.albumDesc;
@@ -85,7 +107,7 @@ for (let i = 0; i < tracks.length; i++) {
   if (tracks[i].album === clickedAlbum.album) {
     albumTrack.push(tracks[i]);
   }
-}
+} */
 //console.log(albumTrack);
 /*let tbody = document.querySelector("tbody");
 for (let i = 0; i < albumTrack.length; i++) {
@@ -189,19 +211,8 @@ const addNewTrack = function () {
   //console.log(lastRow);
 };
 
-const removeTrack = function (e) {
-  let row = e.parentElement.parentElement;
-  row.classList.add("animate");
-  row.classList.add("fadeOut");
-  let selectedTrack = row.querySelector("strong");
-  let tracks = JSON.parse(localStorage.getItem("tracks"));
-  for (let i = 0; i < tracks.length; i++) {
-    if (tracks[i].title === selectedTrack.innerText) {
-      tracks.splice(i, 1);
-    }
-  }
-  localStorage.setItem("tracks", JSON.stringify(tracks));
-  setTimeout(function () {
-    row.remove();
-  }, 2500);
-};
+
+localStorage.setItem("tracks", JSON.stringify(tracks));
+setTimeout(function () {
+  row.remove();
+}, 2500);
