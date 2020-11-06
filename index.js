@@ -30,6 +30,41 @@ const populateAlbums = function () {
     "row-cols-xl-6"
   );
   albumDiv.appendChild(albumRow);
+
+  response = fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+      "x-rapidapi-key": "8922e7eb38msha406b3662407a30p14661djsn13118198de68"
+    }
+  })
+    .then(response => {
+      let songs = response.data
+      for (let i = 0; i < songs.length; i++) {
+        let albumCol = document.createElement("div");
+        albumCol.classList.add("col");
+        albumCol.innerHTML = `<div class="card mx-auto" style="width: 15 rem">
+                              <a href="album.html?${songs[i].album.title}"
+                                ><img src="${songs[i].album.cover_big}" class="card-img-top" alt="..."
+                              />
+                              <div class="play-btn rounded-pill"></div>
+                              </a>
+                            </div>
+                            <h6 class="card-title"><strong>${songs[i].album.title}</strong></h6>
+                          </div>`;
+        albumRow.appendChild(albumCol);
+      }
+
+    })
+  
+}
+
+
+
+
+
+
+  /* part to change
   albumsLocal = JSON.parse(localStorage.getItem("albums"));
   for (let i = 0; i < albumsLocal.length; i++) {
     let albumCol = document.createElement("div");
@@ -44,9 +79,12 @@ const populateAlbums = function () {
                             <h6 class="card-title"><strong>${albumsLocal[i].album}</strong></h6>
                           </div>`;
     albumRow.appendChild(albumCol);
-  }
-};
+  } */
 
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
 const populateLibrary = function () {
   let albumDiv = document.querySelector("#v-pills-library>div");
   // ROW TITLE
