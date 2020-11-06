@@ -34,6 +34,50 @@ const loadSearchResult = () => {
   console.log(search.value);
 };
 
+function jumbotron(songInfo) {
+  return `<div id="jumbotron" class="container-fluid black-bg">
+    <div class="container py-5">
+      <div class="text-container">
+        <h1 class="mt-5">${songInfo.artist.name} <br>
+        ${songInfo.album.title}</h1>
+        <h6>233435354 listeners</h6>
+      </div>
+    </div>
+  </div>
+  <div id="most-popular-albums" class="container-fluid mt-5">
+    <h2>Most Popular Albums</h2>
+  </div>
+    `;
+}
+
+function popularAlbums(songInfo) {
+  return `
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
+      <div class="col mb-4">
+        <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px;">
+
+          <div>
+            <img src=${
+              songInfo.album.cover_medium
+            }  class="card-img-top" alt="..." />
+
+            <div class="play-btn rounded-pill"></div>
+
+          </div>
+          <div class="card-text">
+            <span class="d-inline-block text-truncate" style="max-width: 100%;">
+              <strong>${
+                songInfo.album.title.length < 16
+                  ? `${songInfo.album.title}`
+                  : `${songInfo.album.title.substring(0, 16)}...`
+              }</strong><br>
+              ${songInfo.artist.name}</span>
+          </div>
+        </div>
+    </div>     
+  `;
+}
+
 function returnCard(songInfo) {
   return `
       <div class="col text-center" id=${songInfo.id}>
@@ -76,7 +120,7 @@ const search = function () {
 
       if (found.length > 0) {
         found.forEach((track) => {
-          main.innerHTML += returnCard(track);
+          main.innerHTML += popularAlbums(track);
         });
       }
     });
