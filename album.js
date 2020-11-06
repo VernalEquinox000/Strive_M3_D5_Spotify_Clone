@@ -1,6 +1,61 @@
+fetch("https://deezerdevs-deezer.p.rapidapi.com/album/6983483", {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-key": "2ecd7c2fb5msh0fa167f544e5b1fp16bf79jsnc31bc5a31efa",
+      "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com"
+    }
+  })
+  .then(response => response.json())
+  .then(album => {
+    console.log(album)
+    let title = album.title
+    console.log(title);
+    let genreObj = album.genres
+    console.log(genreObj)
+    let genreData = genreObj.data
+    console.log(genreData)
+    let genre = genreData[0].name
+    console.log(genre)
+    let tracklist = album.tracks
+    let tracks = tracklist.data
+    console.table(tracks)
+    let firstalbum = tracks[0].title
+    tracks.forEach((x, index) => {
+      console.log(tracks[index].title)
+      let tbody = document.querySelector("tbody");
+      let tr = document.createElement("tr");
+      tr.innerHTML = `<th scope="row">${index + 1}</th>
+                        <td>
+                            <div class="container">
+                            <div><strong>${tracks[index].title}</strong></div>
+                            <div><a href="artist.html">${
+                              clickedAlbum.artist
+                            }</a></div>
+                            </div>
+                        </td>
+                        <td>${title[index]}</td>
+                        <td>3 days ago</td>
+                        <td>${Math.round(tracks[index].duration / 60)}</td>
+                        <td><a type="button" onclick="removeTrack(this)">Remove</a></td>`;
+      tbody.appendChild(tr);
+      let albumTitle = document.querySelector("#albumTitle");
+      albumTitle.innerText = title;
+      let albumDesc = document.querySelector("#albumDesc");
+      albumDesc.innerText = `Genres: ${genre}`
+      let albumImg = document.querySelector("#albumImg");
+      albumImg.setAttribute("src", album.cover_medium);
+
+    });
+    console.log(firstalbum)
+
+  })
+  .catch(err => {
+    console.error(err);
+  });
+
 const queryString = window.location.search;
 const queryAlbum = queryString.slice(1);
-console.log(JSON.parse(localStorage.getItem("tracks")));
+//console.log(JSON.parse(localStorage.getItem("tracks")));
 tracks = JSON.parse(localStorage.getItem("tracks"));
 albums = JSON.parse(localStorage.getItem("albums"));
 
@@ -17,7 +72,7 @@ if (clickedAlbum.album === undefined) {
     }
   }
 }
-console.log(clickedAlbum);
+//console.log(clickedAlbum);
 let albumTitle = document.querySelector("#albumTitle");
 albumTitle.innerText = clickedAlbum.album;
 let albumDesc = document.querySelector("#albumDesc");
@@ -31,8 +86,8 @@ for (let i = 0; i < tracks.length; i++) {
     albumTrack.push(tracks[i]);
   }
 }
-console.log(albumTrack);
-let tbody = document.querySelector("tbody");
+//console.log(albumTrack);
+/*let tbody = document.querySelector("tbody");
 for (let i = 0; i < albumTrack.length; i++) {
   let tr = document.createElement("tr");
   tr.innerHTML = `<th scope="row">${i + 1}</th>
@@ -49,7 +104,7 @@ for (let i = 0; i < albumTrack.length; i++) {
                     <td>${albumTrack[i].duration}</td>
                     <td><a type="button" onclick="removeTrack(this)">Remove</a></td>`;
   tbody.appendChild(tr);
-}
+} */
 let lastTr = document.createElement("tr");
 lastTr.innerHTML = document.createElement("tr");
 lastTr.innerHTML = `<th scope="row"></th>
@@ -131,7 +186,7 @@ const addNewTrack = function () {
   );
   localStorage.setItem("tracks", JSON.stringify(tracks));
   location.reload();
-  console.log(lastRow);
+  //console.log(lastRow);
 };
 
 const removeTrack = function (e) {
