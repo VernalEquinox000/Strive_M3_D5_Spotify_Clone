@@ -30,6 +30,81 @@ const populateAlbums = function () {
     "row-cols-xl-6"
   );
   albumDiv.appendChild(albumRow);
+
+  /* response = fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
+    "method": "GET",
+    "headers": {
+      "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+      "x-rapidapi-key": "8922e7eb38msha406b3662407a30p14661djsn13118198de68"
+    }
+  })
+    .then(response => response.json()).then((songs) => 
+      let songs = response.data
+      songs.foreach(element => { */
+  
+  fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
+    method: "GET",
+    headers: {
+      "x-rapidapi-key": "dc976bef57mshfe1863c26e99ba2p1cc559jsn861f89a53ff3",
+      "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+    },
+  })
+    .then((response) => response.json())
+    .then((albumObj) => {
+      console.log(albumObj);
+      
+      albumObj.data.forEach((element) => {
+        let divElement = document.createElement("div");
+        divElement.classList.add("col");
+        divElement.classList.add("mb-4");
+        document.querySelectorAll(".row.row-cols-1")[0].appendChild(divElement);
+
+        divElement.innerHTML =
+          `<div class="col mb-4">
+                <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px; id='${element.album.id}' onclick=(openSong(${element.album.id})">
+                <div>
+                    <img src="${element.album.cover}">
+                    <div class="play-btn rounded-pill"></div>
+                </div>
+                <div class="card-text">
+                    <span class="mt-3 d-inline-block text-truncate" style="max-width: 100%;">
+                    <strong>${element.album.title}</strong>
+                </div>
+                </div>
+            </div>`
+      })
+    })
+}
+  
+  
+
+
+
+
+/*         let albumCol = document.createElement("div");
+        albumCol.classList.add("col");
+        albumCol.innerHTML = `<div class="card mx-auto" style="width: 15 rem">
+                              <a href="album.html?${element.album.title}"
+                                ><img src="${element.album.cover_big}" class="card-img-top" alt="..."
+                              />
+                              <div class="play-btn rounded-pill"></div>
+                              </a>
+                            </div>
+                            <h6 class="card-title"><strong>${element.album.title}</strong></h6>
+                          </div>`;
+        albumRow.appendChild(albumCol);
+      )
+      })
+  
+    })
+}
+ */
+
+
+
+
+
+  /* part to change
   albumsLocal = JSON.parse(localStorage.getItem("albums"));
   for (let i = 0; i < albumsLocal.length; i++) {
     let albumCol = document.createElement("div");
@@ -44,10 +119,13 @@ const populateAlbums = function () {
                             <h6 class="card-title"><strong>${albumsLocal[i].album}</strong></h6>
                           </div>`;
     albumRow.appendChild(albumCol);
-  }
-};
+  } */
 
-const populateLibrary = function () {
+
+
+
+//////////////////////////////////////////////////////////////////////////////////
+/* const populateLibrary = function () {
   let albumDiv = document.querySelector("#v-pills-library>div");
   // ROW TITLE
   let rowTitle;
@@ -121,6 +199,6 @@ const addPlayList = function () {
   );
   addPlaylist(newAlbum);
   location.reload();
-};
+}; */
 populateAlbums();
-populateLibrary();
+/* populateLibrary(); */

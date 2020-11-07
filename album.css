@@ -59,6 +59,7 @@ body {
 nav h1 {
   color: #b3b3b3 !important;
 }
+
 .nav-header {
   font-size: 12px;
   font-weight: 700;
@@ -122,9 +123,11 @@ nav h1 {
   -ms-flex-negative: 0;
   flex-shrink: 0;
 }
+
 .spoticon-heart-active-16::before {
   font-size: 16px;
 }
+
 [class*=" spoticon-"]:before,
 [class^="spoticon-"]:before {
   font-family: glue1-spoticon;
@@ -179,7 +182,7 @@ header i {
   background-position: center;
 }
 
-.upgrade + .dropdown .dropdown-toggle:after {
+.upgrade+.dropdown .dropdown-toggle:after {
   position: relative;
   bottom: 8px;
 }
@@ -217,27 +220,21 @@ header i {
 }
 
 .albumHead {
-  background: hsla(339, 100%, 55%, 1);
+  /*background: hsla(339, 100%, 55%, 1);
 
-  background: linear-gradient(
-    90deg,
-    hsla(339, 100%, 55%, 1) 0%,
-    hsla(197, 100%, 64%, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      hsla(339, 100%, 55%, 1) 0%,
+      hsla(197, 100%, 64%, 1) 100%);
 
-  background: -moz-linear-gradient(
-    90deg,
-    hsla(339, 100%, 55%, 1) 0%,
-    hsla(197, 100%, 64%, 1) 100%
-  );
+  background: -moz-linear-gradient(90deg,
+      hsla(339, 100%, 55%, 1) 0%,
+      hsla(197, 100%, 64%, 1) 100%);
 
-  background: -webkit-linear-gradient(
-    90deg,
-    hsla(339, 100%, 55%, 1) 0%,
-    hsla(197, 100%, 64%, 1) 100%
-  );
+  background: -webkit-linear-gradient(90deg,
+      hsla(339, 100%, 55%, 1) 0%,
+      hsla(197, 100%, 64%, 1) 100%);
 
-  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr="#ff1b6b", endColorstr="#45caff", GradientType=1 );
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#ff1b6b", endColorstr="#45caff", GradientType=1); */
 }
 
 main {
@@ -260,11 +257,16 @@ main .container .row img:first-of-type {
 .album div:first-of-type {
   margin-top: 50px;
   font-weight: 500;
+  color: rgba(65, 215, 0, 1);
+  -webkit-text-stroke: .5px black;
+
 }
 
 .album div:nth-of-type(2) {
   font-size: 50px;
   font-weight: 600;
+  color: rgba(65, 215, 0, 1);
+  -webkit-text-stroke: .9px black;
 }
 
 i.far.fa-play-circle,
@@ -303,6 +305,7 @@ thead tr th {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -312,6 +315,7 @@ thead tr th {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -326,6 +330,7 @@ thead tr th {
   0% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }
@@ -335,6 +340,7 @@ thead tr th {
   0% {
     opacity: 1;
   }
+
   100% {
     opacity: 0;
   }
@@ -410,6 +416,7 @@ footer .fa-volume-up:hover {
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
   opacity: 0;
 }
+
 .middle-align {
   position: absolute;
 
@@ -487,28 +494,28 @@ footer .fa-volume-up:hover {
   display: none;
 }
 
-.checkbox4:checked + label > .hamburger4 > .bar1 {
+.checkbox4:checked+label>.hamburger4>.bar1 {
   top: 13.5px;
   background-color: transparent !important;
 }
 
-.checkbox4:checked + label > .hamburger4 > .bar2 {
+.checkbox4:checked+label>.hamburger4>.bar2 {
   left: 0px;
   width: 24px;
   transform: rotate(45deg);
 }
 
-.checkbox4:checked + label > .hamburger4 > .bar3 {
+.checkbox4:checked+label>.hamburger4>.bar3 {
   left: 0;
   width: 24px;
   transform: rotate(-45deg);
 }
 
-.checkbox4:checked + label > .hamburger4 > .bar4 {
+.checkbox4:checked+label>.hamburger4>.bar4 {
   background-color: transparent !important;
 }
 
-.checkbox4:checked + label > .hamburger4 > .bar5 {
+.checkbox4:checked+label>.hamburger4>.bar5 {
   bottom: 13.5px;
   background-color: transparent !important;
 }
@@ -532,13 +539,16 @@ footer .fa-volume-up:hover {
   #sidebar {
     margin-left: -14.5rem;
   }
+
   #sidebar.active {
     margin-left: 0;
   }
+
   #content {
     width: 100%;
     margin: 0;
   }
+
   #content.active {
     margin-left: 14.5rem;
     width: calc(100% - 14.5rem);
