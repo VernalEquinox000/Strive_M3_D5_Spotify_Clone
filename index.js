@@ -61,7 +61,7 @@ const populateAlbums = function () {
 
         divElement.innerHTML =
           `<div class="col mb-4">
-                <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px; id='${element.album.id}' onclick=(openSong(${element.album.id})">
+                <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px;" id='${element.album.id}' onclick=(openAlbum(${element.album.id}))>
                 <div>
                     <img src="${element.album.cover}">
                     <div class="play-btn rounded-pill"></div>
@@ -76,7 +76,10 @@ const populateAlbums = function () {
     })
 }
   
-  
+const openAlbum = (id) => {
+  window.open("album.html?id=" + id);
+  console.log("openAlbum id_____________", id);
+};
 
 
 
