@@ -11,6 +11,8 @@ const getArtist = () => {
       console.log(artistObj);
       let jumbotronEl = document.createElement("div");
       jumbotronEl.setAttribute("id", "jumbotron");
+      jumbotronEl.id = artistObj.id;
+      console.log('artistObj.id:::::::::::::::::::::', artistObj.id);
       jumbotronEl.classList.add("container-fluid");
       jumbotronEl.classList.add("black-bg");
       jumbotronEl.style.cssText = `background: url('${artistObj.picture_xl}');
@@ -148,7 +150,7 @@ const getAlbums = () => {
 
         divElement.innerHTML = `
                 <div class="col mb-4">
-                <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px; id='${element.album.id}' onclick=(openSong(${element.album.id})">
+                <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px;" id='${element.album.id}' onclick=(openAlbum(${element.album.id}))>
                 <div>
                     <img src="${element.album.cover}">
                     <div class="play-btn rounded-pill"></div>
@@ -167,9 +169,9 @@ const getAlbums = () => {
     });
 };
 
-const openSong = (id) => {
+const openAlbum = (id) => {
   window.open("album.html?id=" + id);
-  console.log(id);
+  console.log("openAlbum id_____________", id);
 };
 
 getArtist();
