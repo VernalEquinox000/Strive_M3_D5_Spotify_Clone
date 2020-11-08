@@ -19,44 +19,52 @@ const removeTrack = function (e) {
   }, 2500);
 };
 
-  let url = new URLSearchParams(window.location.search);
-  let id = url.get("id");
+let url = new URLSearchParams(window.location.search);
+let id = url.get("id");
 
-  fetch("https://deezerdevs-deezer.p.rapidapi.com/album/"+id, {
-    "method": "GET",
-    "headers": {
-      "x-rapidapi-key": "2ecd7c2fb5msh0fa167f544e5b1fp16bf79jsnc31bc5a31efa",
-      "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com"
-    }
-  })
-  .then(response => response.json())
-  .then(album => {
+fetch("https://deezerdevs-deezer.p.rapidapi.com/album/" + id, {
+  method: "GET",
+  headers: {
+    "x-rapidapi-key": "2ecd7c2fb5msh0fa167f544e5b1fp16bf79jsnc31bc5a31efa",
+    "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+  },
+})
+  .then((response) => response.json())
+  .then((album) => {
+    console.log(album);
 
-    let title = album.title
+    let title = album.title;
     console.log(title);
-    let artistObj = album.artist
-    let artist = artistObj.name
-    console.log(artist)
-    let genreObj = album.genres
-    let genreData = genreObj.data
-    let genre = genreData[0].name
-    console.log(genre)
-    let tracklist = album.tracks
-    let tracks = tracklist.data
-    console.table(tracks)
-    let today = new Date()
-    let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-    console.log(date)
+    let artistObj = album.artist;
+    let artist = artistObj.name;
+    console.log(artist);
+    let genreObj = album.genres;
+    let genreData = genreObj.data;
+    let genre = genreData[0].name;
+    console.log(genre);
+    let tracklist = album.tracks;
+    let tracks = tracklist.data;
+    console.table(tracks);
+    let today = new Date();
+    let date =
+      today.getFullYear() +
+      "-" +
+      (today.getMonth() + 1) +
+      "-" +
+      today.getDate();
+    console.log(date);
     tracks.forEach((element, index) => {
       let tbody = document.querySelector("tbody");
       let tr = document.createElement("tr");
       tr.innerHTML = `<th scope="row">${index + 1}</th>
                         <td>
                             <div class="container">
-                            <div id="tracktitle"><strong>${tracks[index].title}</strong></div>
-                            <div><a href="artist.html">${
-                              artist
-                            }</a></div>
+                            <div id="tracktitle"><strong>${
+                              tracks[index].title
+                            }</strong></div>
+                            <div><a href="artist.html?id=${
+                              album.artist.id
+                            }">${artist}</a></div>
                             </div>
                         </td>
                         <td>${title}</td>
@@ -67,47 +75,59 @@ const removeTrack = function (e) {
       let albumTitle = document.querySelector("#albumTitle");
       albumTitle.innerText = title;
       let albumDesc = document.querySelector("#albumDesc");
-      albumDesc.innerText = `Genres: ${genre}`
+      albumDesc.innerText = `Genres: ${genre}`;
       let albumImg = document.querySelector("#albumImg");
       albumImg.setAttribute("src", album.cover_medium);
-      let albuminfo = document.getElementById("albuminfo").innerHTML = `<strong><a>${album.label}</a></strong>, ${album.fans} fans, ${album.nb_tracks} songs, ${Math.floor(album.duration/60)} minutes.`
-      document.getElementsByClassName("background")[0].style.background = `url(${album.cover_medium})`
-      document.getElementsByClassName("background")[0].style.backgroundRepeat = `no-repeat`
-      document.getElementsByClassName("background")[0].style.backgroundSize = `cover`
-      document.getElementsByClassName("background")[0].style.backgroundPosition = `center`
+      let albuminfo = (document.getElementById(
+        "albuminfo"
+      ).innerHTML = `<strong><a>${album.label}</a></strong>, ${
+        album.fans
+      } fans, ${album.nb_tracks} songs, ${Math.floor(
+        album.duration / 60
+      )} minutes.`);
+      document.getElementsByClassName(
+        "background"
+      )[0].style.background = `url(${album.cover_medium})`;
+      document.getElementsByClassName(
+        "background"
+      )[0].style.backgroundRepeat = `no-repeat`;
+      document.getElementsByClassName(
+        "background"
+      )[0].style.backgroundSize = `cover`;
+      document.getElementsByClassName(
+        "background"
+      )[0].style.backgroundPosition = `center`;
     });
-
   })
-  .catch(err => {
+  .catch((err) => {
     console.error(err);
   });
-  // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    
-  const queryString = window.location.search;
-  const queryAlbum = queryString.slice(1);
-  //console.log(JSON.parse(localStorage.getItem("tracks")));
-  tracks = JSON.parse(localStorage.getItem("tracks"));
-  albums = JSON.parse(localStorage.getItem("albums"));
-  
-  let clickedAlbum = decodeURI(queryAlbum);
-  for (let i = 0; i < albums.length; i++) {
-      if (albums[i].album === clickedAlbum) {
-      clickedAlbum = albums[i];
-      }
-  }
-  if (clickedAlbum.album === undefined) {
-      for (let i = 0; i < playlists.length; i++) {
-      if (playlists[i].album === clickedAlbum) {
-          clickedAlbum = playlists[i];
-      }
-      }
-  }
+const queryString = window.location.search;
+const queryAlbum = queryString.slice(1);
+//console.log(JSON.parse(localStorage.getItem("tracks")));
+tracks = JSON.parse(localStorage.getItem("tracks"));
+albums = JSON.parse(localStorage.getItem("albums"));
 
-  // ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  let lastTr = document.createElement("tr");
-  lastTr.innerHTML = document.createElement("tr");
-  lastTr.innerHTML = `<th scope="row"></th>
+let clickedAlbum = decodeURI(queryAlbum);
+for (let i = 0; i < albums.length; i++) {
+  if (albums[i].album === clickedAlbum) {
+    clickedAlbum = albums[i];
+  }
+}
+if (clickedAlbum.album === undefined) {
+  for (let i = 0; i < playlists.length; i++) {
+    if (playlists[i].album === clickedAlbum) {
+      clickedAlbum = playlists[i];
+    }
+  }
+}
+
+// ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+let lastTr = document.createElement("tr");
+lastTr.innerHTML = document.createElement("tr");
+lastTr.innerHTML = `<th scope="row"></th>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -146,7 +166,6 @@ const removeTrack = function (e) {
                       </div>
                     </div>
                     `;
-  
 
 //console.log(clickedAlbum);
 /*let albumTitle = document.querySelector("#albumTitle");
@@ -221,7 +240,6 @@ const addNewTrack = function () {
   location.reload();
   //console.log(lastRow);
 };
-
 
 localStorage.setItem("tracks", JSON.stringify(tracks));
 setTimeout(function () {
