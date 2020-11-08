@@ -16,17 +16,19 @@ const getArtist = () => {
       jumbotronEl.classList.add("container-fluid");
       jumbotronEl.classList.add("black-bg");
       jumbotronEl.style.cssText = `background: url('${artistObj.picture_xl}');
+      color:white;
         background-size: cover;
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position-y: 20%`;
       document.querySelector(".jumbo-contain").appendChild(jumbotronEl);
+
       jumbotronEl.innerHTML = `
               
                   <div class="container py-5">
                   <div class="text-container">
-                      <h1 class="mt-5">${artistObj.name}</h1>
-                      <h6 class="text-primary">${artistObj.nb_fan} listeners</h6>
+                      <h1 class="mt-5" style="font-weight:bold;font-size:4rem;">${artistObj.name}</h1>
+                      <h6 class="text-primary" style="font-size:1.8rem;">${artistObj.nb_fan} listeners</h6>
                       
                   </div>
                   </div>
