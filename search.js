@@ -34,69 +34,37 @@ const loadSearchResult = () => {
   console.log(search.value);
 };
 
-function jumbotron(songInfo) {
-  return `<div id="jumbotron" class="container-fluid black-bg">
-    <div class="container py-5">
-      <div class="text-container">
-        <h1 class="mt-5">${songInfo.artist.name} <br>
-        ${songInfo.album.title}</h1>
-        <h6>233435354 listeners</h6>
-      </div>
+function queryResult(searchQuery = "", found = "") {
+  return `
+  <div class="row ">
+    <div class="col-12">
+      <h1 >
+       ${found > 0 ? found : "No Search"} results found for '${searchQuery}'
+      </h1>
     </div>
   </div>
-  <div id="most-popular-albums" class="container-fluid mt-5">
-    <h2>Most Popular Albums</h2>
+  <div id="albums" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
+    
   </div>
-    `;
+   `;
 }
 
-function popularAlbums(songInfo) {
+function returnAlbumCard(albumInfo) {
   return `
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-6">
-      <div class="col mb-4">
-        <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px;">
+  <div class="col mb-4">
 
-          <div>
-            <img src=${
-              songInfo.album.cover_medium
-            }  class="card-img-top" alt="..." />
-
-            <div class="play-btn rounded-pill"></div>
-
-          </div>
-          <div class="card-text">
-            <span class="d-inline-block text-truncate text-white" style="max-width: 100%;">
-              <strong>${
-                songInfo.album.title.length < 16
-                  ? `${songInfo.album.title}`
-                  : `${songInfo.album.title.substring(0, 16)}...`
-              }</strong><br>
-              ${songInfo.artist.name}</span>
-          </div>
-        </div>
-    </div>     
-  `;
-}
-
-function returnCard(songInfo) {
-  return `
-      <div class="col text-center" id=${songInfo.id}>
-        <a href="/album_page.html?id=${songInfo.album.id}">
-          <img class="img-fluid" src=${songInfo.album.cover_medium} alt="1" />
-        </a>
-        <p>
-          <a href="/album_page.html?id=${songInfo.album.id}">
-            Album: "${
-              songInfo.album.title.length < 16
-                ? `${songInfo.album.title}`
-                : `${songInfo.album.title.substring(0, 16)}...`
-            }"<br>
-          </a>
-          <a href="/artist_page.html?id=${songInfo.artist.id}">
-            Artist: ${songInfo.artist.name}
-          </a>
-        </p>
-      </div>`;
+      <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px;" id='${albumInfo.album.id}' onclick=(goToAlbum(${albumInfo.album.id}))>
+      <div>
+          <img src="${albumInfo.album.cover}">
+          <div class="play-btn rounded-pill"></div>
+      </div>
+      <div class="card-text">
+          <span class="mt-3 d-inline-block text-light text-truncate" style="max-width: 100%;">
+          <strong>${albumInfo.album.title}</strong>
+      </div>
+    </div>
+              
+    </div>`;
 }
 
 const headers = {
@@ -106,26 +74,36 @@ const headers = {
 
 const search = function () {
   const searchQuery = document.getElementById("search").value;
+
   fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${searchQuery}`, {
     method: "GET",
     headers,
   })
     .then((response) => response.json())
     .then((data) => {
-      const main = document.getElementById("v-pills-tabContent");
-      main.innerHTML = "";
       found = [];
 
       found = data.data;
+      console.log(found.length);
+      const main = document.querySelector("#v-pills-home>div");
+
+      main.innerHTML = queryResult(searchQuery, found.length);
+
+      let albums = document.getElementById("albums");
 
       if (found.length > 0) {
         found.forEach((track) => {
-          main.innerHTML += popularAlbums(track);
+          albums.innerHTML += returnAlbumCard(track);
         });
       }
     });
+  searchQuery = "";
+};
+
+const goToAlbum = (id) => {
+  window.open("album.html?id=" + id);
+  console.log("openAlbum id_____________", id);
 };
 
 const searchButton = document.getElementById("search");
 searchButton.addEventListener("change", search);
-// Targeting individual pages

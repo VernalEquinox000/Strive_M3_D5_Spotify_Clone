@@ -11,6 +11,7 @@ const populateAlbums = function () {
     "row-cols-lg-6",
     "row-cols-xl-6"
   );
+
   albumDiv.appendChild(rowTitleDiv);
   let rowTitleCol = document.createElement("div");
   rowTitleCol.classList.add("col");
