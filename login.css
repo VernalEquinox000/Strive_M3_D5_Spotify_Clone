@@ -1,0 +1,424 @@
+/*GENERAL STYLING
+TO USE ROOT COLORS: 
+ex. background-color: var(--playbar_bg); 
+*/
+:root {
+  --spotify_green: #41d76d;
+  --general_text: #8c8c8c;
+  --sidebar_bg: #060c12;
+  --sb_login_btn: #161719;
+  --playbar_bg: #2c2c2c;
+  --playbar_light: #b3b3b3;
+  /*elements and buttons*/
+  --playbar_dark: #434343;
+  /*empty progress bar*/
+  --facebook_blue: #3e5a9b;
+  --login_light: #dadada;
+  /*forms, footer and hrs in login page*/
+  --scrollbar: #5e5e5e;
+  /*scroll bar for all pages*/
+}
+
+@font-face {
+  src: url(fonts/lineto-circular-black.ttf);
+  src: url(fonts/lineto-circular-pro-bold.ttf);
+  src: url(fonts/lineto-circular-pro-book.ttf);
+  src: url(fonts/lineto-circular-pro-medium.ttf);
+  font-family: "lineto";
+  font-style: normal;
+  font-weight: 700;
+}
+
+body {
+  font-family: "Cabin", sans-serif;
+  overflow-x: hidden;
+}
+
+p {
+  font-size: 12px;
+}
+
+.bg_grad {
+  /*Thank you Ermal for this amazing gradient*/
+  background: rgb(37, 70, 109);
+  background: linear-gradient(
+    145deg,
+    rgba(37, 70, 109, 1) 16%,
+    rgba(3, 5, 8, 1) 85%
+  );
+}
+
+.spotify-album-bg {
+  background: rgb(29, 29, 29);
+  background: linear-gradient(
+    135deg,
+    rgba(29, 29, 29, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+.spotify-text-primary {
+  color: var(--general_text);
+}
+
+.spotify-text-secondary {
+  color: white;
+}
+
+.navbar-nav a {
+  position: relative;
+  letter-spacing: 3px;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+.navbar-nav a:hover::after {
+  content: "";
+  position: absolute;
+  left: 33%;
+  bottom: 0;
+  height: 1px;
+  width: 35px;
+  border-bottom: 2px solid;
+  border-color: var(--spotify_green);
+}
+
+.spotify-bg-sidebar {
+  background-color: var(--sidebar_bg);
+}
+
+.spotify-bg-sidebar a {
+  text-decoration: none;
+}
+
+.linkBorder {
+  border-left: 4px solid var(--spotify_green);
+}
+
+.spotify-bg-sidebar a:hover span {
+  color: white;
+  transform: translate(0px);
+}
+
+.spotify-bg-sidebar div:last-of-type {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+}
+
+.spotify-bg-sidebar div:last-of-type a {
+  font-size: 0.8rem;
+}
+
+.spotify-bg-sidebar div:last-of-type a:hover {
+  border: none;
+  color: white;
+}
+
+.spotify-green-bg {
+  background-color: var(--spotify_green);
+}
+
+.spotify-btn-primary {
+  background-color: white;
+  color: var(--sidebar_bg);
+  width: 90%;
+  font-weight: bold;
+  font-size: 0.8rem;
+  border: 2px solid white;
+}
+
+.spotify-btn-primary:hover {
+  background-color: rgba(255, 255, 255, 0.123);
+  color: white;
+  border: 2px solid white;
+}
+
+.spotify-btn-secondary {
+  /*this will also apply to the "follow" button in the artist page, but the background opacity has to be lowered*/
+  background-color: var(--sb_login_btn);
+  color: white;
+  border: 2px solid;
+  border-color: #afafae;
+  width: 90%;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.spotify-btn-secondary:hover {
+  /*this will also apply to the "follow" button in the artist page, but the background opacity has to be lowered*/
+  background-color: rgba(255, 255, 255, 0.123);
+  border-color: white;
+}
+
+.spotify-btn-green {
+  /*this applies to bith play button in the artists' page and the log-in button in the login page*/
+  background-color: #15883e;
+  color: white;
+  border: none;
+  width: 45%;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+.spotify-btn-green:hover {
+  background-color: #15b64d;
+}
+
+.spotify-btn-facebook {
+  background-color: var(--facebook_blue);
+  color: white;
+  width: 100%;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+.spotify-btn-facebook:hover {
+  background-color: #4e72c2;
+}
+
+.spotify-btn-apple {
+  background-color: black;
+  color: white;
+  width: 100%;
+  font-weight: bold;
+  font-size: 14px;
+  border: none;
+  padding-top: 13px;
+  padding-bottom: 13px;
+}
+
+.spotify-btn-apple:hover {
+  background-color: rgb(54, 52, 52);
+}
+
+/* this will aplly when you hover over the cards so it will show the play option */
+.playMusic {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.452);
+  z-index: 2;
+}
+
+.covers:hover .playMusic {
+  display: flex;
+  color: white;
+
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.far.fa-heart.fa-2x,
+.far.fa-play-circle.fa-4x,
+.fas.fa-ellipsis-h.fa-2x {
+  transform: translate(-50%, -50%);
+  transform: scale(0);
+  transition: 0.6s ease;
+}
+
+.playMusic:hover .far.fa-heart.fa-2x,
+.playMusic:hover .far.fa-play-circle.fa-4x,
+.playMusic:hover .fas.fa-ellipsis-h.fa-2x {
+  transform: scale(1);
+}
+
+.far.fa-heart.fa-2x:hover,
+.fas.fa-ellipsis-h.fa-2x:hover {
+  cursor: default;
+}
+.saveLibrary,
+.more {
+  background-color: var(--playbar_bg);
+  color: #8c8c8c;
+  position: absolute;
+  top: 90%;
+  font-size: 16px;
+  padding: 3px 4px;
+  z-index: 10;
+  transform: translateY(0.8rem);
+  opacity: 0;
+}
+.saveLibrary {
+  left: -100%;
+  right: -100%;
+}
+.more {
+  left: 0;
+}
+.saveLibrary::after,
+.more::after {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 20px;
+  height: 20px;
+  border: 10px solid;
+  border-color: transparent transparent var(--playbar_bg) transparent;
+  z-index: 999;
+}
+.far.fa-heart.fa-2x:hover .saveLibrary {
+  opacity: 1;
+  transition: 1.5s ease;
+}
+.fas.fa-ellipsis-h.fa-2x:hover .more {
+  opacity: 1;
+  transition: 1.5s ease;
+}
+
+.devider {
+  border-top: 1px solid #d9dadc;
+  line-height: 1px;
+  width: 100%;
+}
+
+.deviderContent {
+  background-color: white;
+  padding: 0 20px;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.login {
+  max-width: 450px;
+  margin: 0 auto;
+}
+.login p {
+  color: #898b8d;
+}
+.login p a {
+  color: #15883e;
+  font-weight: bold;
+}
+.login h5,
+.login h6 {
+  font-weight: bolder;
+}
+
+.login h5 {
+  font-size: 18px;
+}
+
+#loginPassword,
+#loginUser {
+  padding: 7px 10px;
+  border: 1px solid;
+  border-color: #d9dadc;
+  color: black;
+}
+
+#loginPassword + a {
+  color: #616467;
+  text-decoration: underline;
+}
+
+#loginPassword + a:hover {
+  cursor: pointer;
+  color: #10ac47;
+}
+.spotify-signIn-btn-primary {
+  background-color: transparent;
+  color: #616467;
+  width: 100%;
+  font-size: 14px;
+  font-weight: bold;
+  border: none;
+  letter-spacing: 2px;
+  border: 2px solid #616467;
+  padding-top: 11px;
+  padding-bottom: 11px;
+}
+
+.spotify-signIn-btn-primary:hover {
+  background-color: #616467;
+  color: white;
+}
+
+/* this will aplly when you hover over the cards so it will show the play option */
+
+.spotify-bg-playbar {
+  background-color: var(--playbar_bg);
+}
+
+.spotify-bg-playbar-light {
+  background-color: var(--playbar_light);
+}
+
+.spotify-bg-playbar-dark {
+  background-color: var(--playbar_dark);
+}
+
+.spotify-pb-text-light {
+  color: var(--playbar_light);
+}
+.spotify-album-shadow {
+  box-shadow: 1px 1px 26px 3px rgba(0, 0, 0, 0.75);
+}
+
+::-webkit-scrollbar {
+  height: auto;
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(29, 29, 29);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar);
+}
+
+.spotify-bg-sidebar2 {
+  position: fixed;
+  bottom: 10vh;
+  width: 100%;
+  background-color: var(--playbar_bg);
+
+  border-bottom: 2px solid black;
+  z-index: 999;
+}
+
+.spotify-bg-sidebar2 a {
+  text-decoration: none;
+}
+
+.spotify-bg-sidebar2 a:hover div {
+  color: white;
+}
+
+.dropdown-item:hover {
+  background-color: var(--spotify_green);
+}
+
+.registerUser {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 100px;
+  background-color: rgba(0, 0, 0, 0.137);
+}
+
+.registerUserContent {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  border-radius: 8px;
+  width: 40%;
+}
