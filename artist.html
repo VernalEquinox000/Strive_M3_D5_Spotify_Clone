@@ -40,7 +40,7 @@
           <span>Home</span>
         </a>
       </li>
-      <li class="nav-item px-2">
+      <li id="load_search" class="nav-item px-2">
         <a href="#" class="nav-link text-white">
           <div class="icon d-inline-block">
             <svg viewBox="0 0 512 512" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
@@ -101,6 +101,7 @@
 
 
   <div class="page-content head overflow-hidden" id="content">
+    <div id="search_modal"></div>
     <header class="sticky-top d-flex justify-content-between">
 
 
@@ -247,6 +248,8 @@
     </footer>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="search.js"></script>
+   
     <script src="artist.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

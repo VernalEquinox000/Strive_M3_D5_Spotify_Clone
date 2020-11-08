@@ -11,6 +11,7 @@ const populateAlbums = function () {
     "row-cols-lg-6",
     "row-cols-xl-6"
   );
+
   albumDiv.appendChild(rowTitleDiv);
   let rowTitleCol = document.createElement("div");
   rowTitleCol.classList.add("col");
@@ -41,7 +42,7 @@ const populateAlbums = function () {
     .then(response => response.json()).then((songs) => 
       let songs = response.data
       songs.foreach(element => { */
-  
+
   fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
     method: "GET",
     headers: {
@@ -52,15 +53,14 @@ const populateAlbums = function () {
     .then((response) => response.json())
     .then((albumObj) => {
       console.log(albumObj);
-      
+
       albumObj.data.forEach((element) => {
         let divElement = document.createElement("div");
         divElement.classList.add("col");
         divElement.classList.add("mb-4");
         document.querySelectorAll(".row.row-cols-1")[0].appendChild(divElement);
 
-        divElement.innerHTML =
-          `<div class="col mb-4">
+        divElement.innerHTML = `<div class="col mb-4">
                 <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px;" id='${element.album.id}' onclick=(openAlbum(${element.album.id}))>
                 <div>
                     <img src="${element.album.cover}">
@@ -71,18 +71,15 @@ const populateAlbums = function () {
                     <strong>${element.album.title}</strong>
                 </div>
                 </div>
-            </div>`
-      })
-    })
-}
-  
+            </div>`;
+      });
+    });
+};
+
 const openAlbum = (id) => {
   window.open("album.html?id=" + id);
   console.log("openAlbum id_____________", id);
 };
-
-
-
 
 /*         let albumCol = document.createElement("div");
         albumCol.classList.add("col");
@@ -103,11 +100,7 @@ const openAlbum = (id) => {
 }
  */
 
-
-
-
-
-  /* part to change
+/* part to change
   albumsLocal = JSON.parse(localStorage.getItem("albums"));
   for (let i = 0; i < albumsLocal.length; i++) {
     let albumCol = document.createElement("div");
@@ -123,9 +116,6 @@ const openAlbum = (id) => {
                           </div>`;
     albumRow.appendChild(albumCol);
   } */
-
-
-
 
 //////////////////////////////////////////////////////////////////////////////////
 /* const populateLibrary = function () {
