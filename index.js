@@ -41,48 +41,54 @@ const populateAlbums = function () {
     .then(response => response.json()).then((songs) => 
       let songs = response.data
       songs.foreach(element => { */
-  
-  fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
-    method: "GET",
-    headers: {
-      "x-rapidapi-key": "dc976bef57mshfe1863c26e99ba2p1cc559jsn861f89a53ff3",
-      "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
-    },
-  })
-    .then((response) => response.json())
-    .then((albumObj) => {
-      console.log(albumObj);
-      
-      albumObj.data.forEach((element) => {
+  const loadArtist = (artistid) => {
+    fetch("https://deezerdevs-deezer.p.rapidapi.com/artist/" + artistid, {
+      method: "GET",
+      headers: {
+        "x-rapidapi-key": "dc976bef57mshfe1863c26e99ba2p1cc559jsn861f89a53ff3",
+        "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+      },
+    })
+      .then((response) => response.json())
+      .then((albumObj) => {
+        console.log(albumObj);
+
         let divElement = document.createElement("div");
         divElement.classList.add("col");
         divElement.classList.add("mb-4");
         document.querySelectorAll(".row.row-cols-1")[0].appendChild(divElement);
 
-        divElement.innerHTML =
-          `<div class="col mb-4">
-                <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px;" id='${element.album.id}' onclick=(openAlbum(${element.album.id}))>
+        divElement.innerHTML = `<div class="col mb-4">
+                <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px;" id='${albumObj.id}' onclick=(openAlbum(${albumObj.id}))>
                 <div>
-                    <img src="${element.album.cover}">
+                    <img src="${albumObj.picture}">
                     <div class="play-btn rounded-pill"></div>
                 </div>
                 <div class="card-text">
-                    <span class="mt-3 d-inline-block text-truncate" style="max-width: 100%;">
-                    <strong>${element.album.title}</strong>
+                    <span class="mt-3 d-inline-block text-truncate text-light" style="max-width: 100%;">
+                    <strong>${albumObj.name}</strong>
                 </div>
                 </div>
-            </div>`
-      })
-    })
-}
-  
-const openAlbum = (id) => {
-  window.open("album.html?id=" + id);
-  console.log("openAlbum id_____________", id);
+            </div>`;
+      });
+  };
+  loadArtist("13");
+  loadArtist("1");
+  loadArtist("2");
+  loadArtist("3");
+  loadArtist("14");
+  loadArtist("10");
+  loadArtist("11");
+  loadArtist("9");
+  loadArtist("7");
+  loadArtist("6");
+  loadArtist("15");
 };
 
-
-
+const openAlbum = (id) => {
+  window.open("artist.html?id=" + id);
+  console.log("openAlbum id_____________", id);
+};
 
 /*         let albumCol = document.createElement("div");
         albumCol.classList.add("col");
@@ -103,11 +109,7 @@ const openAlbum = (id) => {
 }
  */
 
-
-
-
-
-  /* part to change
+/* part to change
   albumsLocal = JSON.parse(localStorage.getItem("albums"));
   for (let i = 0; i < albumsLocal.length; i++) {
     let albumCol = document.createElement("div");
@@ -123,9 +125,6 @@ const openAlbum = (id) => {
                           </div>`;
     albumRow.appendChild(albumCol);
   } */
-
-
-
 
 //////////////////////////////////////////////////////////////////////////////////
 /* const populateLibrary = function () {
