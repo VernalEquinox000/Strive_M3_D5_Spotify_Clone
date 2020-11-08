@@ -1,5 +1,8 @@
+let url = new URLSearchParams(window.location.search);
+let id = url.get("id");
+
 const getArtist = () => {
-  fetch("https://deezerdevs-deezer.p.rapidapi.com/artist/13", {
+  fetch("https://deezerdevs-deezer.p.rapidapi.com/artist/" + id, {
     method: "GET",
     headers: {
       "x-rapidapi-key": "dc976bef57mshfe1863c26e99ba2p1cc559jsn861f89a53ff3",
@@ -8,11 +11,10 @@ const getArtist = () => {
   })
     .then((response) => response.json())
     .then((artistObj) => {
-      console.log(artistObj);
       let jumbotronEl = document.createElement("div");
       jumbotronEl.setAttribute("id", "jumbotron");
       jumbotronEl.id = artistObj.id;
-      console.log('artistObj.id:::::::::::::::::::::', artistObj.id);
+      console.log("artistObj.id:::::::::::::::::::::", artistObj.id);
       jumbotronEl.classList.add("container-fluid");
       jumbotronEl.classList.add("black-bg");
       jumbotronEl.style.cssText = `background: url('${artistObj.picture_xl}');
@@ -34,91 +36,23 @@ const getArtist = () => {
                   </div>
               </div>
         `;
-    })
 
-    .catch((err) => {
-      console.error(err);
-    });
-};
-
-const trackList = () => {
-  fetch("https://deezerdevs-deezer.p.rapidapi.com/album/119606", {
-    method: "GET",
-    headers: {
-      "x-rapidapi-key": "dc976bef57mshfe1863c26e99ba2p1cc559jsn861f89a53ff3",
-      "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
-    },
-  })
-    .then((response) => response.json())
-    .then((trackOjb) => {
-      console.log(trackOjb);
-      let tableEl = document.createElement("table");
-      tableEl.classList.add(
-        "table",
-        "table-borderless",
-        "tale-hover",
-        "table-dark"
-      );
-      tableEl.style.minWidth = "500px";
-      document.querySelector(".table-contain").appendChild(tableEl);
-
-      tableEl.innerHTML = `
-            <thead>
-            <tr>
-                <th scope="col">Play</th>
-                <th scope="col">Title</th>
-                <th scope="col">Album</th>
-                
-                <th scope="col"><i class="far fa-clock"></i></th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-                <th scope="row"><i class="fas fa-play"></i></th>
-                <td>${trackOjb.tracks.data[2].title}</td>
-                <td>${trackOjb.title}</td>
-                
-                <td>${trackOjb.tracks.data[2].duration} Sec</td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row"><i class="fas fa-play"></i></th>
-                <td>${trackOjb.tracks.data[3].title}</td>
-                <td>${trackOjb.title}</td>
-                
-                <td>${trackOjb.tracks.data[3].duration} Sec</td>
-                <td></td>
-            </tr>
-            <tr>
-                <th scope="row"><i class="fas fa-play"></i></th>
-                <td>${trackOjb.tracks.data[6].title}</td>
-                <td>${trackOjb.title}</td>
-                
-                <td>${trackOjb.tracks.data[6].duration} Sec</td>
-                <td></td>
-            </tr>
-            </tbody>
-    `;
-    })
-    .catch((err) => {
-      console.error(err);
-    });
-};
-
-const getAlbums = () => {
-  fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
-    method: "GET",
-    headers: {
-      "x-rapidapi-key": "dc976bef57mshfe1863c26e99ba2p1cc559jsn861f89a53ff3",
-      "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
-    },
-  })
-    .then((response) => response.json())
-    .then((albumObj) => {
-      console.log(albumObj);
-      let card = document.querySelector("h2+div.card.mb-3");
-      card.innerHTML = `
+      const getAlbums = () => {
+        fetch(
+          `https://deezerdevs-deezer.p.rapidapi.com/search?q=${artistObj.name}`,
+          {
+            method: "GET",
+            headers: {
+              "x-rapidapi-key":
+                "dc976bef57mshfe1863c26e99ba2p1cc559jsn861f89a53ff3",
+              "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+            },
+          }
+        )
+          .then((response) => response.json())
+          .then((albumObj) => {
+            let card = document.querySelector("h2+div.card.mb-3");
+            card.innerHTML = `
             <div class="row no-gutters">
                         <div class="col-4">
                             <img src="${albumObj.data[1].album.cover}" class="card-img" alt="...">
@@ -133,24 +67,74 @@ const getAlbums = () => {
                         </div>
                         </div>
       `;
-      let map = new Map();
-      for (element of albumObj.data) {
-        map.set(element.album.id, element);
-      }
+            let tableEl = document.createElement("table");
+            tableEl.classList.add(
+              "table",
+              "table-borderless",
+              "tale-hover",
+              "table-dark"
+            );
+            tableEl.style.minWidth = "500px";
+            document.querySelector(".table-contain").appendChild(tableEl);
 
-      let filteredData = [];
-      map.forEach((value, key, map) => {
-        filteredData.push(value);
-      });
-      console.log(filteredData);
+            tableEl.innerHTML = `
+            <thead>
+            <tr>
+                <th scope="col">Play</th>
+                <th scope="col">Title</th>
+                <th scope="col">Album</th>
+                
+                <th scope="col"><i class="far fa-clock"></i></th>
+                <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <th scope="row"><i class="fas fa-play"></i></th>
+                <td>${albumObj.data[2].title}</td>
+                <td>${albumObj.data[2].album.title}</td>
+                
+                <td>${(albumObj.data[2].duration / 60).toFixed(2)} min</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row"><i class="fas fa-play"></i></th>
+                <td>${albumObj.data[3].title}</td>
+                <td>${albumObj.data[3].album.title}</td>
+                
+                <td>${(albumObj.data[3].duration / 60).toFixed(2)} min</td>
+                <td></td>
+            </tr>
+            <tr>
+                <th scope="row"><i class="fas fa-play"></i></th>
+                <td>${albumObj.data[6].title}</td>
+                <td>${albumObj.data[6].album.title}</td>
+               
+                <td>${(albumObj.data[6].duration / 60).toFixed(2)} min</td>
+                <td></td>
+            </tr>
+            </tbody>
+    `;
+            let map = new Map();
+            for (element of albumObj.data) {
+              map.set(element.album.id, element);
+            }
 
-      filteredData.forEach((element) => {
-        let divElement = document.createElement("div");
-        divElement.classList.add("col");
-        divElement.classList.add("mb-4");
-        document.querySelectorAll(".row.row-cols-1")[0].appendChild(divElement);
+            let filteredData = [];
+            map.forEach((value, key, map) => {
+              filteredData.push(value);
+            });
+            console.log(filteredData);
 
-        divElement.innerHTML = `
+            filteredData.forEach((element) => {
+              let divElement = document.createElement("div");
+              divElement.classList.add("col");
+              divElement.classList.add("mb-4");
+              document
+                .querySelectorAll(".row.row-cols-1")[0]
+                .appendChild(divElement);
+
+              divElement.innerHTML = `
                 <div class="col mb-4">
                 <div class="card mx-auto mb-4 p-3 h-100" style="min-width:160px;" id='${element.album.id}' onclick=(openAlbum(${element.album.id}))>
                 <div>
@@ -164,8 +148,15 @@ const getAlbums = () => {
                 </div>
             </div>      
         `;
-      });
+            });
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      };
+      getAlbums();
     })
+
     .catch((err) => {
       console.error(err);
     });
@@ -177,7 +168,3 @@ const openAlbum = (id) => {
 };
 
 getArtist();
-
-getAlbums();
-
-trackList();

@@ -51,8 +51,6 @@ const populateAlbums = function () {
     })
       .then((response) => response.json())
       .then((albumObj) => {
-        console.log(albumObj);
-
         let divElement = document.createElement("div");
         divElement.classList.add("col");
         divElement.classList.add("mb-4");
